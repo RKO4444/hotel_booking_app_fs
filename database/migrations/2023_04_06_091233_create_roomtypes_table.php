@@ -14,19 +14,13 @@ class CreateRoomtypesTable extends Migration
     public function up()
     {
         Schema::create('roomtypes', function (Blueprint $table) {
-            $table->id('room_type_id');
+            $table->id();
             $table->string('size');
             $table->boolean('ac');
-            $table->boolean('wifi');
-            $table->integer('capacity');      
-           $table->timestamps();
-
-
-       
+            $table->boolean('capacity');
         });
     }
 
-    
     /**
      * Reverse the migrations.
      *

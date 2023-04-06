@@ -14,18 +14,17 @@ class CreateRoomsTable extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->id('room_id');
-            $table->unsignedBigInteger('room_type_id');
-            $table->unsignedBigInteger('hotel_id');
+            $table->id();
             $table->integer('price');
             $table->string('facilities');
-            $table->string('room_img');      
+            $table->boolean('avail');
             $table->timestamps();
-        
-
+            $table->unsignedBigInteger('roomtype_id')->index();
+            $table->foreign('roomtype_id')->references('id')->on('roomtypes')->onDelete('cascade');
+            $table->unsignedBigInteger('hotel_id')->index();
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
